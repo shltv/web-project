@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Coming soon{% endblock %}
+
+{% block style %}
+#soon {
+position: absolute;
+top: 60%;
+left: 0%;
+width: 100%;
+}
+
+#announcement{
+position: absolute;
+top: 46%;
+font-family: sans-serif;
+color: white;
+width: 100%;
+left: 0%;
+padding: 12.5px;
+text-align: center;
+background-image: repeating-linear-gradient(45deg, black 45%, orange 50%);
+border-bottom: 5px solid red;
+border-top: 5px solid red;
+}
+{% endblock %}
+
+{% block content %}
+<h2 id="announcement">Это страница еще не доступна...</h2>
+<img id="soon" src="https://media0.giphy.com/media/rgVLXMbhACKQ/source.gif">{% endblock %}

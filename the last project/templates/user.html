@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+{% extends "base.html" %}
+
+{% block title %}My page {% endblock %}
+
+{% block style %}
+
+/* user profile style starts */
+#user {
+position: absolute;
+top: 55%;
+left: 20%;
+width: 50%;
+background-color: DarkMagenta;
+}
+
+.avatar {
+width: 100%;
+border: 4px double yellow;
+}
+
+.link{
+    font-family: sans-serif;
+    color: blue;
+    background-color: white;
+    padding: 1%;
+    text-decoration: none;
+    padding: 3px;
+    border-radius: 30%;
+}
+
+#about_me {
+padding: 5px;
+background-color: skyblue;
+color: darkblue;
+width: 40%;
+border-style: ridge;
+}
+/* user profile style ends */
+
+/* user posts style starts */
+#add_post{
+position: absolute;
+top: 100%;
+left: 20%;
+color: lime;
+}
+
+.avatars {
+width: 100%;
+}
+
+#posts {
+background-color: blueviolet;
+position: absolute;
+top: 110%;
+left: 20%;
+width: 50%;
+}
+/* user posts style ends */
+
+.texts {
+font-family: sans-serif;
+}
+
+#sort {
+font-family: sans-serif;
+padding: 5px;
+background-color: rgb(219, 183, 237);
+position: absolute;
+top: 100%;
+left: 40%;
+border-radius: 2px;
+}
+
+#save_button {
+font-family: sans-serif;
+background-color: rgb(225, 151, 240);
+border-style: inner;
+}
+
+#save_button:hover {
+background-color: rgb(255, 141, 250);
+}
+{% endblock %}
+
+
+{% block content %}
+<!--FLASH MESSAGE STARTS -->
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <p style="font-family: sans-serif; background-color: white; padding: 2px; color: red; position: absolute; top: 50%; line-height: 85%; text-align: center;">{{ messages[-1] }}</p>
+    {% endif %}
+{% endwith %}
+<!--FLASH MESSAGE ENDS -->
+
+<!--USER PROFILE STARTS -->
+<table id="user" >
+        <tr valign="top">
+        {% if ".png" in user.avatar or ".jpg" in user.avatar %}
+            <td style="width: 20%;"><img class="avatar" src="{{ user.avatar }}"></td>
+        {% else %}
+            <td style="width: 20%;"><img class="avatar" src="https://www.eyedocs.co.uk/components/com_community/assets/user-anon.png"></td>
+        {% endif %}
+            <td class="texts" style="color: white; padding-left: 2%;"><h1 ><i>User: </i><strong><u>{{ user.username }}</u></strong></h1>
+                {% if user.about_me %}
+                <p id="about_me" class="texts">{{ user.about_me }}</p>
+                {% endif %}
+                {% if user.last_seen %}
+                <p class="texts">Last seen on: <u><i>{{ user.last_seen }}</i></u></p>
+                {% endif %}
+                <a class="link" href="http://127.0.0.1:8080/edit">Edit profile</a><br><br>
+                <a style="color: red;" class="link texts" href="http://127.0.0.1:8080/logout">Log out</a><br><br>
+            </td>
+        </tr>
+</table>
+<!--USER PROFILE ENDS -->
+<a class="link texts" id="add_post" style="padding: 10px" href="http://127.0.0.1:8080/new_post"><strong>+ New post</strong></a><br>
+<!--USER POSTS STARTS -->
+<table id="posts">
+    {% for post in posts %}
+    <tr valign="top">
+    {% if ".png" in user.avatar or ".jpg" in user.avatar %}
+        <td style="width: 5%; border-bottom: 2px dotted gray"><img class="avatars" src="{{ user.avatar }}"></td>
+    {% else %}
+        <td style="width: 5%; border-bottom: 2px dotted gray"><img class="avatars" src="https://www.eyedocs.co.uk/components/com_community/assets/user-anon.png"></td>
+    {% endif %}
+        <td style="width: 95%; padding-left: 2%; border-bottom: 2px dotted gray"><h3 style="line-height: 0px; color: white;"><strong class="texts">{{ user.username }}</strong></h3>
+            <h5 class="texts" style="color: silver"> at <u>{{ post.time }}</u></h5></td></tr>
+    <tr style="border: 2px dotted black">
+        <td style="border-bottom: 2px dashed black"></td>
+        <td style="border-bottom: 2px dashed black"><i class="texts" style="color: white;"><b>{{ post.body }}</b></i><br><br>
+            {% if post.url %}
+            <img style="width: 50%;" src="{{ post.url }}">
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

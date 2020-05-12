@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+{% extends "base.html" %}
+{% block title %}New Post{% endblock %}
+
+{% block style %}
+#form {
+padding: 2%;
+width: 30%;
+background-color: rgb(255, 255, 255, 0.8);
+position: absolute;
+top: 55%;
+left: 20%;
+border-radius: 15%;
+}
+
+#post_button {
+background-color: lime;
+padding: 6px;
+color: blue;
+border-radius: 15%;
+}
+
+#post_button :hover {
+padding: 2%;
+background-color: blue;
+color: lime;
+}
+
+.input {
+padding: 3px;
+border: 1px solid black;
+width: 98%;
+}
+
+.input:focus{
+border: 3px solid #555;
+}
+{% endblock %}
+
+{% block content %}
+<div id="form"><form>
+    <textarea name="body" style="height: 200px; text-alogn: top;" type="text" placeholder="Введите текст поста" class="input"></textarea><br><br>
+    <input type="url" name="url" placeholder="URL видео или картинки(необязательно)" class="input"><br><br>
+    <button id="post_button" type="submit" formmethod="post"><b>Опубликовать</b></button>
+</form></div><br><br><br><br><br><br>
+{% endblock %}
+</html>

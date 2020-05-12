@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+{% extends "base.html" %}
+    {% block title %}Sign up{% endblock %}
+{% block style %}
+    
+    .form {
+      width: 22%;
+      background-color: rgb(200, 200, 200);
+      padding: 1%;
+      padding-right: 0%;
+      line-height: 30%;
+      position: absolute;
+      top: 55%;
+      left: 40%;
+      
+    }
+    
+    #submit_button {
+      color: black;
+      border: none;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 96%;
+      font-family: sans-serif;
+      margin-left: 2%;
+      margin-right: auto;
+      width: 67%;
+      left: 10px;
+      background-color: rgb(50, 170, 50);
+    }
+    
+    #submit_button:hover {
+      background-color: blue;
+    }
+
+    .text {
+      padding-left: 12%;
+    }
+
+    .round {
+    border-radius: 13%;
+{% endblock %}
+
+{% block content %}
+    <!-- форма заполнения взятая с сайта, вот ссылка:  https://www.w3schools.com/howto/howto_css_inline_form.asp -->
+    <div class="form round"><form action="" method="post" novalidate>
+    <div class="text">
+      <input class="round" type="text" name="fname" placeholder="Имя"><br><br>
+      <input class="round" type="text" name="lname" placeholder="Фамилия"><br><br>
+      <input class="round" type="email" name="email" placeholder="Адрес электронной почты" value="{{ email if email }}"><br><br>
+      <input class="round" type="text" name="username" placeholder="Придумайте логин"><br><br>
+      <input class="round" type="text" name="avatar" placeholder="URL аватара"><br><br>
+      <input class="round" type="password" name="password" placeholder="Пароль"><br><br><br><br>
+      <input class="round" id="submit_button" type="submit" value="Зарегистрироваться"><br><br><br><br><br><br><br></div>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <p style="font-family: sans-serif; color: red; position: absolute; top: 75%; line-height: 85%; text-align: center;">{{ messages[-1] }}</p>
+        {% endif %}
+    {% endwith %}
+      <br><br>
+  </form></div>
+{% endblock %}

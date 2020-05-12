@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+<meta charset="utf-8">
+{% block title %}Log in{% endblock %}
+{% block style %}
+.form {
+      width: 22%;
+      background-color: rgb(200, 200, 200);
+      padding: 1%;
+      padding-right: 0%;
+      line-height: 30%;
+      position: absolute;
+      top: 55%;
+      left: 40%;
+
+    }
+
+    #submit_button {
+      color: black;
+      border: none;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 96%;
+      font-family: sans-serif;
+      margin-left: 2%;
+      margin-right: auto;
+      width: 59%;
+      left: 10px;
+      background-color: rgb(50, 170, 50);
+    }
+
+    #submit_button:hover {
+      background-color: blue;
+    }
+
+    #text {
+      padding-left: 12%;
+    }
+    .round {
+    border-radius: 15%;
+    }
+{% endblock %}
+{% block content %}
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <p style="font-family: sans-serif; background-color: white; padding: 2px; color: red; position: absolute; top: 49%; line-height: 85%; left: 40%; text-align: center;">{{ messages[-1] }}</p>
+    {% endif %}
+{% endwith %}
+
+<div class="form round"><form action="" method="post" novalidate>
+    <div id="text" class="round"><input type="text" class="round" name="nick" placeholder="Введите логин"><br><br>
+    <input class="round" type="password" name="password" placeholder="Пароль"><br><br>
+    <input class="round" id="submit_button" type="submit" value="Войти"></div>
+
+  </form></div>
+{% endblock %}
